@@ -16,6 +16,11 @@
     "refactor",
     "gilded-rose"
   ],
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
   "license": "MIT",
   "private": true,
   "bugs": {
@@ -23,6 +28,7 @@
   },
   "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "jest": "^24.9.0"
   }
 }
