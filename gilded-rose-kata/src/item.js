@@ -6,29 +6,16 @@ class Item {
   }
 
   updateQuality = () => {
-    switch (this.name) {
-        case this.AGED_BRIE:
-          this.decreaseSellIn();
-          this.increaseQuality();
-          break;
-        case this.PASS:
-          this.decreaseSellIn();
-          this.updatePassQuality();
-          break;
-        case this.SULFURAS:
-          break;
-        default:
-          this.decreaseQuality();
-          this.decreaseSellIn();
-      }
+    this.decreaseSellIn();
+    this.decreaseQuality();
   }
 
   decreaseQuality = () => {
     if (this.quality > 0) {
         this.quality--;
-      if (this.sellIn < 0) {
+    }
+    if (this.quality > 0 && this.sellIn < 0 ) {
         this.quality--;
-      }
     }
   }
 
@@ -40,19 +27,6 @@ class Item {
 
   decreaseSellIn = () => {
     this.sellIn--;
-  }
-
-  updatePassQuality = () => {
-    if (this.sellIn < 0) {
-        this.quality = 0;
-    }
-    this.increaseQuality();
-    if (this.sellIn <= 10) {
-        this.increaseQuality();
-    }
-    if (this.sellIn <= 5) {
-        this.increaseQuality();
-    }
   }
 }
 

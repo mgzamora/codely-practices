@@ -4,7 +4,8 @@ class Shop {
   }
 
   refreshInventory () {
-    return this.items.forEach(i => i.updateQuality())
+    this.items.forEach(i => i.updateQuality())
+    return this.items
   }
 }
 
