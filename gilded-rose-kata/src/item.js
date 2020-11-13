@@ -5,28 +5,28 @@ class Item {
     this.quality = quality
   }
 
-  updateQuality = () => {
-    this.decreaseSellIn();
-    this.decreaseQuality();
+  updateQuality () {
+    this.decreaseSellIn()
+    this.decreaseQuality()
   }
 
-  decreaseQuality = () => {
+  decreaseQuality () {
     if (this.quality > 0) {
-        this.quality--;
+      this.quality--
     }
-    if (this.quality > 0 && this.sellIn < 0 ) {
-        this.quality--;
+    if (this.quality > 0 && this.sellIn < 0) {
+      this.quality--
     }
   }
 
-  increaseQuality = () => {
+  increaseQuality () {
     if (this.quality < 50) {
-      this.quality++;
+      this.quality++
     }
   }
 
-  decreaseSellIn = () => {
-    this.sellIn--;
+  decreaseSellIn () {
+    this.sellIn--
   }
 }
 

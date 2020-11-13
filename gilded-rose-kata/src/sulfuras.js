@@ -1,7 +1,7 @@
-const { Item } = require("./item");
+const { Item } = require('./item')
 
 class Sulfuras extends Item {
-    updateQuality = () => {}
+  updateQuality () {}
 }
 
-module.exports = { Sulfuras };
+module.exports = { Sulfuras }
