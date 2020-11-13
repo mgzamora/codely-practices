@@ -1,3 +1,7 @@
+const MAX_QUALITY = 50
+const MIN_QUALITY = 0
+const DOUBLE_QUALITY_SELL_IN_THRESHOLD = 0
+
 class Item {
   constructor (name, sellIn, quality) {
     this.name = name
@@ -11,16 +15,16 @@ class Item {
   }
 
   decreaseQuality () {
-    if (this.quality > 0) {
+    if (this.quality > MIN_QUALITY) {
       this.quality--
     }
-    if (this.quality > 0 && this.sellIn < 0) {
+    if (this.quality > MIN_QUALITY && this.sellIn < DOUBLE_QUALITY_SELL_IN_THRESHOLD) {
       this.quality--
     }
   }
 
   increaseQuality () {
-    if (this.quality < 50) {
+    if (this.quality < MAX_QUALITY) {
       this.quality++
     }
   }
