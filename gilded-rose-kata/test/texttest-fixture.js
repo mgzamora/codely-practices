@@ -1,23 +1,17 @@
 
 const { Shop } = require('../src/shop')
-const { Item } = require('../src/item')
-const { Conjured } = require('../src/conjured')
-const { Sulfuras } = require('../src/sulfuras')
-const { Pass } = require('../src/pass')
-const { AgedBrie } = require('../src/aged-brie')
+const ItemFactory = require('../src/item-factory')
 
 const items = [
-  new Item('+5 Dexterity Vest', 10, 20),
-  new AgedBrie('Aged Brie', 2, 0),
-  new Item('Elixir of the Mongoose', 5, 7),
-  new Sulfuras('Sulfuras, Hand of Ragnaros', 0, 80),
-  new Sulfuras('Sulfuras, Hand of Ragnaros', -1, 80),
-  new Pass('Backstage passes to a TAFKAL80ETC concert', 15, 20),
-  new Pass('Backstage passes to a TAFKAL80ETC concert', 10, 49),
-  new Pass('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-
-  // This Conjured item does not work properly yet
-  new Conjured('Conjured Mana Cake', 3, 6)
+  ItemFactory.createItem('+5 Dexterity Vest', 10, 20),
+  ItemFactory.createItem('Aged Brie', 10, 20),
+  ItemFactory.createItem('Elixir of the Mongoose', 5, 7),
+  ItemFactory.createItem('Sulfuras, Hand of Ragnaros', 0, 80),
+  ItemFactory.createItem('Sulfuras, Hand of Ragnaros', -1, 80),
+  ItemFactory.createItem('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+  ItemFactory.createItem('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+  ItemFactory.createItem('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+  ItemFactory.createItem('Conjured Mana Cake', 3, 6)
 ]
 
 const days = Number(process.argv[2]) || 2
