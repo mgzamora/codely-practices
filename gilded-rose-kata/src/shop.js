@@ -8,50 +8,54 @@ class Shop {
     this.items = items;
   }
 
+  decreaseQuality = (item) => {
+    if (item.quality > 0) {
+      item.quality--;
+      if (item.sellIn < 0) {
+        item.quality--;
+      }
+    }
+  }
+
+  increaseQuality = (item) => {
+    if (item.quality < 50) {
+      item.quality++;
+    }
+  }
+
+  decreaseSellIn = (item) => {
+    item.SellIn--;
+  }
+
+  updatePassQuality = (item) => {
+    if (item.sellIn < 0) {
+      item.quality = 0;
+    }
+    this.increaseQuality(item);
+    if (item.sellIn <= 10) {
+      this.increaseQuality(item);
+    }
+    if (item.sellIn <= 5) {
+      this.increaseQuality(item);
+    }
+  }
+
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != this.AGED_BRIE && this.items[i].name != this.PASS) {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != this.SULFURAS) {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == this.PASS) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.items[i].name != this.SULFURAS) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != this.AGED_BRIE) {
-          if (this.items[i].name != this.PASS) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != this.SULFURAS) {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
+      switch (this.items[i].name) {
+        case this.AGED_BRIE:
+          this.decreaseSellIn(this.items[i]);
+          this.increaseQuality(this.items[i]);
+          break;
+        case this.PASS:
+          this.decreaseSellIn(this.items[i]);
+          this.updatePassQuality(this.items[i]);
+          break;
+        case this.SULFURAS:
+          break;
+        default:
+          this.decreaseQuality(this.items[i]);
+          this.decreaseSellIn(this.items[i]);
       }
     }
 
