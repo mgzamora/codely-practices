@@ -3,6 +3,7 @@ const { Item } = require('../src/item')
 const { AgedBrie } = require('../src/aged-brie')
 const { Pass } = require('../src/pass')
 const { Sulfuras } = require('../src/sulfuras')
+const { Conjured } = require('../src/conjured')
 
 describe('Gilded Rose', function () {
   it('should decrease the regular item', function () {
@@ -102,6 +103,26 @@ describe('Gilded Rose', function () {
     const itemUpdated = items[0]
     expect(itemUpdated.name).toBe('Backstage passes to a TAFKAL80ETC concert')
     expect(itemUpdated.quality).toBe(0)
+    expect(itemUpdated.sellIn).toBe(-1)
+  })
+
+  it('should decrease its quality twice', function () {
+    let items = [new Conjured('Conjured', 1, 10)]
+    const gildedRose = new Shop(items)
+    items = gildedRose.refreshInventory()
+    const itemUpdated = items[0]
+    expect(itemUpdated.name).toBe('Conjured')
+    expect(itemUpdated.quality).toBe(8)
+    expect(itemUpdated.sellIn).toBe(0)
+  })
+
+  it('should decrease its quality four times', function () {
+    let items = [new Conjured('Conjured', 0, 10)]
+    const gildedRose = new Shop(items)
+    items = gildedRose.refreshInventory()
+    const itemUpdated = items[0]
+    expect(itemUpdated.name).toBe('Conjured')
+    expect(itemUpdated.quality).toBe(6)
     expect(itemUpdated.sellIn).toBe(-1)
   })
 })
